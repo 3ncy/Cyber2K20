@@ -5,6 +5,54 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    scroll-behavior: smooth;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 0px 5px 0px;
+    min-height: 8%;
+}
+
+.navbar-logo {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.nav-links li {
+    list-style: none;
+}
+
+.nav-link {
+    color: #000000;
+    text-decoration: none;
+    background: linear-gradient(to right, #646464, #646464 50%, #000000 50%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 100%;
+    background-position: 100%;
+    transition: background-position 300ms ease;
+}
+
+.nav-link:hover {
+    background-position: 0 100%;
+}
+
+.nav-link-box {
+    padding: 5px;
 }
 
 .landingpage-wrapper {
@@ -56,6 +104,29 @@
     height: 50px;
     cursor: pointer;
     margin: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.landingpage-text-buttons-button1::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: -1;
+    transition: transform 0.3s ease;
+}
+
+.landingpage-text-buttons-button1::after {
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.landingpage-text-buttons-button1:hover::after {
+    transform: scaleX(1);
 }
 
 .landingpage-image img {
@@ -64,7 +135,7 @@
 }
 
 .about-section {
-    background-color: #ddd;
+    background-color: white;
 }
 
 .about-section-container {
@@ -74,7 +145,10 @@
 }
 
 .about-section-text {
-    padding: 10px 10px 10px 10px;
+    padding: 20px;
+    background: linear-gradient(-45deg, #e4e4e4 1.25%, #fff 1.25%, #fff 48.75%, #e4e4e4 48.75%, #e4e4e4 51.25%, #fff 51.25%, #fff 98.75%, #e4e4e4 98.75%);
+    background-size: 30px 30px;
+    color: black;
 }
 
 .about-section-text-heading {
@@ -95,7 +169,10 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     font-weight: 500;
-    padding: 10px 10px 10px 10px;
+    padding: 20px;
+    background: linear-gradient(-45deg, #e4e4e4 1.25%, #fff 1.25%, #fff 48.75%, #e4e4e4 48.75%, #e4e4e4 51.25%, #fff 51.25%, #fff 98.75%, #e4e4e4 98.75%);
+    background-size: 30px 30px;
+    color: black;
 }
 
 .about-section-steam-profile {
@@ -131,5 +208,10 @@
 
     .about-section-container {
         flex-direction: column;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
     }
 }
