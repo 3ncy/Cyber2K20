@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.landingpage-wrapper {
+    height: 100%;
+    background-image: url(./backgrounds/landingpage-background.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.landingpage-content {
+    display: flex;
+    width: 90%;
+    margin: auto;
+    min-height: 80vh;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.landingpage-text {
+    padding: 50px 10px 50px 10px;
+}
+
+.landingpage-text-intro-heading {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 55px;
+    letter-spacing: 1px;
+    font-weight: 800;
+    margin: auto;
+}
+
+.landingpage-text-intro-bottom {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+}
+
+.landingpage-text-buttons {
+    padding: 40px 0px 0px 0px;
+}
+
+.landingpage-text-buttons-button1 {
+    border: 2px solid #000000;
+    background: transparent;
+    color: #000000;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    margin: auto;
+}
+
+.landingpage-image img {
+    height: 50vh;
+    padding: 0px 0px 50px 0px;
+}
+
+.about-section {
+    background-color: #ddd;
+}
+
+.about-section-container {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 50px 50px 50px 50px;
+}
+
+.about-section-text {
+    padding: 10px 10px 10px 10px;
+}
+
+.about-section-text-heading {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.about-section-text-para {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.about-section-steam {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px 10px 10px 10px;
+}
+
+.about-section-steam-profile {
+    padding: 3px;
+    display: flex;
+}
+
+.steam-bold {
+    font-weight: 900;
+}
+
+.steam-name {
+    justify-content: right;
+}
+
+.about-section-steam img {
+    height: 3vh;
+    vertical-align: middle;
+}
+
+@media (max-width:800px) {
+    .landingpage-content {
+        flex-direction: column;
+    }
+
+    .landingpage-text {
+        text-align: center;
+    }
+
+    .landingpage-image img {
+        height: 40vh;
+    }
+
+    .about-section-container {
+        flex-direction: column;
+    }
+}
