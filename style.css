@@ -59,10 +59,26 @@ html {
 }
 
 .landingpage-wrapper {
+    position: relative;
+
     height: 100%;
+}
+
+.landingpage-wrapper::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+    
     background-image: url(./backgrounds/landingpage-background.jpg);
     background-position: center;
     background-size: cover;
+    z-index: -1;
+    opacity: .89;
 }
 
 .landingpage-content {
@@ -199,6 +215,47 @@ html {
 .about-section-steam img {
     height: 3vh;
     vertical-align: middle;
+}
+
+.contact-section {
+    background-color: #444444;
+}
+
+.contact-section-container {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 50px;
+}
+
+.contact-section-contact {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+.contact-section-media {
+    display: flex;
+    flex-direction: column;
+    color: #fff;
+}
+
+.contact-section-contact-heading {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 25px;
+}
+
+.contact-section-contact-lists {
+    font-family: 'Open sans', sans-serif;
+    font-size: 18px;
+    list-style: none;
+}
+
+.contact-section-contact-list-container {
+    padding: 0 3px 0 3px;
+}
+
+.contact-section-contact-list {
+
 }
 
 @media (max-width:800px) {
