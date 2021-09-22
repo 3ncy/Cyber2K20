@@ -218,30 +218,50 @@ html {
 }
 
 .contact-section {
-    background-color: #444444;
+    padding: 0 105px 50px 105px;
 }
 
 .contact-section-container {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-around;
     padding: 50px;
+    position: relative;
+    border: 2px solid #000000;
+}
+
+.contact-section-container::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+    
+    background-color: #ffffff;
+    opacity: 0.8;
+    background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 27.5px 27.5px, linear-gradient(#e4e4e4 2.2px, transparent 2.2px) 0 -1.1px, linear-gradient(90deg, #e4e4e4 2.2px, #ffffff 2.2px) -1.1px 0;
+    background-size: 55px 55px, 55px 55px, 27.5px 27.5px, 27.5px 27.5px;
+    z-index: -1;
+    opacity: .89;
 }
 
 .contact-section-contact {
     display: flex;
     flex-direction: column;
-    color: #fff;
+    color: #000000;
 }
 
 .contact-section-media {
     display: flex;
     flex-direction: column;
-    color: #fff;
+    color: #000000;
 }
 
-.contact-section-contact-heading {
+.contact-section-contact-heading-contact, .contact-section-contact-heading-media {
     font-family: 'Rajdhani', sans-serif;
-    font-size: 25px;
+    font-size: 27px;
 }
 
 .contact-section-contact-lists {
@@ -251,11 +271,12 @@ html {
 }
 
 .contact-section-contact-list-container {
-    padding: 0 3px 0 3px;
+    padding: 3px 0 3px 0;
 }
 
 .contact-section-contact-list {
-
+    text-decoration: none;
+    color: #000000;
 }
 
 @media (max-width:800px) {
@@ -278,5 +299,13 @@ html {
     .nav-links {
         flex-direction: column;
         align-items: center;
+    }
+
+    .contact-section-container {
+        flex-direction: column;
+    }
+
+    .contact-section-contact-heading-media {
+        padding: 20px 0 0 0;
     }
 }
