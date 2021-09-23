@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="./style.css">
         <link rel="icon" href="./logos/favicon.PNG">
         <title>Cyber2K20 official website</title>
+        <script defer src="./contactform.js"></script>
     </head>
     <body>
         <div class="landingpage-wrapper">
@@ -105,12 +106,29 @@
                         Message us!
                     </h2>
                     <p class="join-section-text-bottom">
-                        You can message us by typing your IGN, email and the message. <br>
+                        You can message us by typing your IGN, email and the message <br> 
+                        into the form at the right. <br>
                         Ask us about anything & we will respond in the next 48 hours!
                     </p>
                 </div>
                 <div class="join-section-form">
-                    <input type="text" class="join-section-form-name">
+                    <form action="contactform.js" id="form" method="POST" class="join-section-form-container">
+                        <div class="join-section-form-items-container">
+                            <input type="text" id="username" name="username" placeholder="Your IGN..." class="join-section-form-name" autocomplete="off">
+                            <small>error message</small>
+                        </div>
+                        <div class="join-section-form-items-container">
+                            <input type="text" id="email" name="email" placeholder="Your Email..." class="join-section-form-email">
+                            <small>error message</small>
+                        </div>
+                        <div class="join-section-form-items-container">
+                            <textarea name="message" id="message" placeholder="Your Message" class="join-section-form-message"></textarea>
+                            <small>error message</small>
+                        </div>
+                        <div class="join-section-form-items-container">
+                            <input type="submit" name="submit" value="Submit" class="join-section-form-submit">
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>

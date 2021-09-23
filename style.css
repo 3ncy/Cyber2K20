@@ -255,16 +255,85 @@ html {
 .join-section-text-bottom {
     font-family: 'Open sans', sans-serif;
     font-size: 18px;
+    padding: 0 0 40px 0;
 }
 
 .join-section-form {
     display: flex;
     height: 100%;
     width: 70vh;
+    padding: 0 0 0 40px;
 }
 
-.join-section-form-name {
+.join-section-form-container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
+}
+
+.join-section-form-items-container {
+    padding: 10px 0;
+    width: 100%;
+}
+
+.join-section-form-name, .join-section-form-email, .join-section-form-message {
+    width: 100%;
+    padding: 2px 0 2px 0;
+    font-family: 'Open sans', sans-serif;
+    font-size: 14px;
+    border: none;
+    border-bottom: 2px solid white;
+    background-color: transparent;
+    color: white;
+    resize: none;
+    outline: none;
+}
+
+.join-section-form-message {
+    height: 12vh;
+}
+
+.join-section-form-name::placeholder, .join-section-form-email::placeholder, .join-section-form-message::placeholder {
+    color: rgb(209, 209, 209);
+}
+
+.join-section-form-submit {
+    background-color: white;
+    color: black;
+    border: none;
+    padding: 4px 17px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.join-section-form-submit:hover {
+    transition: 0.3s ease;
+    background-color: rgb(209, 209, 209);
+}
+
+.join-section-form-submit:active {
+    background-color: rgb(146, 146, 146);
+}
+
+.join-section-form-items-container.success input, .join-section-form-items-container.success textarea {
+    border-color: greenyellow;
+}
+
+.join-section-form-items-container.error input, .join-section-form-items-container.error textarea {
+    border-color: rgb(255, 73, 73);
+}
+
+.join-section-form-items-container small {
+    visibility: hidden;
+    color: rgb(255, 73, 73);;
+    font-family: 'Open sans', sans-serif;
+    font-size: 14px;
+}
+
+.join-section-form-items-container.error small {
+    visibility: visible;
 }
 
 .contact-section {
@@ -338,6 +407,16 @@ html {
 @media(max-width:1100px) {
     .join-section-form {
         width: 50%;
+        padding: 0 0 0 20px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .join-section-form-container {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
 }
 
@@ -374,6 +453,7 @@ html {
 
     .join-section-form {
         width: 35vh;
+        padding: 0;
     }
 }
 
