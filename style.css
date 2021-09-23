@@ -41,17 +41,12 @@ html {
 .nav-link {
     color: #000000;
     text-decoration: none;
-    background: linear-gradient(to right, #646464, #646464 50%, #000000 50%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 200% 100%;
-    background-position: 100%;
-    transition: background-position 300ms ease;
+    transition: .3s ease;
 }
 
 .nav-link:hover {
-    background-position: 0 100%;
+    color: #494949;
+    transition: .3s ease;
 }
 
 .nav-link-box {
@@ -277,6 +272,12 @@ html {
 .contact-section-contact-list {
     text-decoration: none;
     color: #000000;
+    transition: .3s ease;
+}
+
+.contact-section-contact-list:hover {
+    color: #494949;
+    transition: .3s ease;
 }
 
 @media (max-width:800px) {
@@ -299,6 +300,10 @@ html {
     .nav-links {
         flex-direction: column;
         align-items: center;
+    }
+
+    .contact-section {
+        padding: 0px 50px 50px 50px;
     }
 
     .contact-section-container {
