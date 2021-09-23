@@ -155,7 +155,7 @@ html {
 .about-section-container {
     display: flex;
     justify-content: space-evenly;
-    padding: 50px 50px 50px 50px;
+    padding: 50px 8% 50px 8%;
 }
 
 .about-section-text {
@@ -210,6 +210,61 @@ html {
 .about-section-steam img {
     height: 3vh;
     vertical-align: middle;
+}
+
+.join-section {
+    padding: 0 0 50px 0;
+}
+
+.join-section-container {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 50px 10% 50px 10%;
+    position: relative;
+    color: #ffffff;
+}
+
+.join-section-container::before {
+    content: "";
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+    
+    background-color: #000000;
+    opacity: 0.9;
+    background-image:  linear-gradient(#262626 2px, transparent 2px), linear-gradient(to right, #262626 2px, #000000 2px);
+    background-size: 48px 48px;
+    z-index: -1;
+}
+
+.join-section-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.join-section-text-heading {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 27px;
+    padding: 0 0 10px 0;
+}   
+
+.join-section-text-bottom {
+    font-family: 'Open sans', sans-serif;
+    font-size: 18px;
+}
+
+.join-section-form {
+    display: flex;
+    height: 100%;
+    width: 70vh;
+}
+
+.join-section-form-name {
+    width: 100%;
 }
 
 .contact-section {
@@ -280,47 +335,10 @@ html {
     transition: .3s ease;
 }
 
-.join-section {
-    padding: 0 0 50px 0;
-}
-
-.join-section-container {
-    display: flex;
-    justify-content: space-around;
-    padding: 50px 12% 50px 12%;
-    position: relative;
-    color: #ffffff;
-}
-
-.join-section-container::before {
-    content: "";
-
-    position: absolute;
-    top: 0;
-    left: 0;
-
-    height: 100%;
-    width: 100%;
-    
-    background-color: #000000;
-    opacity: 0.9;
-    background-image:  linear-gradient(#262626 2px, transparent 2px), linear-gradient(to right, #262626 2px, #000000 2px);
-    background-size: 48px 48px;
-    z-index: -1;
-}
-
-.join-section-text-heading {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 27px;
-}
-
-.join-section-text-bottom {
-    font-family: 'Open sans', sans-serif;
-    font-size: 18px;
-}
-
-.join-section-form-name {
-    
+@media(max-width:1100px) {
+    .join-section-form {
+        width: 50%;
+    }
 }
 
 @media (max-width:800px) {
@@ -347,6 +365,15 @@ html {
 
     .join-section-container {
         flex-direction: column;
+    }
+
+    .join-section-text {
+        align-items: center;
+        text-align: center;
+    }
+
+    .join-section-form {
+        width: 35vh;
     }
 }
 
