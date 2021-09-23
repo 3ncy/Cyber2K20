@@ -325,6 +325,14 @@ html {
     border-color: rgb(255, 73, 73);
 }
 
+.join-section-form-items-container.sbutton input {
+    background-color: greenyellow;
+}
+
+.join-section-form-items-container.ebutton input {
+    background-color: rgb(255, 73, 73);
+}
+
 .join-section-form-items-container small {
     visibility: hidden;
     color: rgb(255, 73, 73);;
