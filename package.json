@@ -1,0 +1,22 @@
+{
+  "name": "cyber2k20-web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "serve": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/H7KZ/Cyber2K20.git"
+  },
+  "author": "h7kz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/H7KZ/Cyber2K20/issues"
+  },
+  "homepage": "https://github.com/H7KZ/Cyber2K20#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

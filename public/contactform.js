@@ -42,7 +42,7 @@ function validations() {
         messageBool = true;
     }
 
-    if(usernameBool == true && emailBool == true && messageBool == true) {
+    if(usernameBool && emailBool && messageBool) {
         validateButton(button);
         
     } else {

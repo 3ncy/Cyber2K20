@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  express:
+    build: ./
+    volumes:
+      - ./:/var/www/app
+    ports:
+      - 3000:3000
+    command:
+      sh -c 'npm i && npm run serve'
+    restart: always
