@@ -412,6 +412,52 @@ html {
     transition: .3s ease;
 }
 
+.footer {
+    display: flex;
+    position: relative;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: #101010;
+    opacity: 0.9;
+    background-image:  radial-gradient(#888888 1.25px, transparent 1.25px), radial-gradient(#888888 1.25px, #101010 1.25px);
+    background-size: 50px 50px;
+    background-position: 0 0,25px 25px; 
+    z-index: -1;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 150px;
+}
+
+.footer-text-container {
+    font-size: 18px;
+    font-family: 'Rajdhani', sans-serif;
+    color: white;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+.footer-logo {
+    height: 3vh;
+}
+
 @media(max-width:1100px) {
     .join-section-form {
         width: 50%;
