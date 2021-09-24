@@ -11,6 +11,27 @@ html {
     margin: 0;
 }
 
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+* {
+    scrollbar-width: auto;
+    scrollbar-color: #a1a1a1 #ffffff;
+}
+
+  /* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #a1a1a1;
+    border: 0px solid #ffffff;
+}
+
 .navbar {
     display: flex;
     justify-content: space-around;
@@ -212,10 +233,6 @@ html {
     vertical-align: middle;
 }
 
-.join-section {
-    padding: 0 0 50px 0;
-}
-
 .join-section-container {
     display: flex;
     justify-content: space-evenly;
@@ -345,7 +362,7 @@ html {
 }
 
 .contact-section {
-    padding: 0 17% 50px 17%;
+    padding: 50px 17% 50px 17%;
 }
 
 .contact-section-container {
@@ -371,7 +388,7 @@ html {
     background: radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent), radial-gradient(circle, transparent 20%, #ffffff 20%, #ffffff 80%, transparent 80%, transparent) 27.5px 27.5px, linear-gradient(#e4e4e4 2.2px, transparent 2.2px) 0 -1.1px, linear-gradient(90deg, #e4e4e4 2.2px, #ffffff 2.2px) -1.1px 0;
     background-size: 55px 55px, 55px 55px, 27.5px 27.5px, 27.5px 27.5px;
     z-index: -1;
-    opacity: .89;
+    opacity: .7;
 }
 
 .contact-section-contact {
@@ -430,11 +447,8 @@ html {
     height: 100%;
     width: 100%;
 
-    background-color: #101010;
+    background-color: #050505;
     opacity: 0.9;
-    background-image:  radial-gradient(#888888 1.25px, transparent 1.25px), radial-gradient(#888888 1.25px, #101010 1.25px);
-    background-size: 50px 50px;
-    background-position: 0 0,25px 25px; 
     z-index: -1;
 }
 
@@ -442,6 +456,31 @@ html {
     display: flex;
     flex-direction: column;
     padding: 50px 150px;
+}
+
+.footer-logos-container {
+    color: white;
+}
+
+.footer-logos-links {
+    text-decoration: none;
+    color: white;
+}
+
+.github-logo, .steam-logo, .discord-logo {
+    height: 7vh;
+    padding: 0 12px 10px 12px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.github-logo:hover, .steam-logo:hover, .discord-logo:hover {
+    color: #8f8f8f;
+    transition: 0.3s ease;
+}
+
+.github-logo:active, .steam-logo:active, .discord-logo:active {
+    color: #6b6b6b;
 }
 
 .footer-text-container {
