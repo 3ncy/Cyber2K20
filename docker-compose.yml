@@ -2,6 +2,10 @@ version: '3'
 
 services:
   express:
+    env_file:
+      - .env
+    depends_on:
+      - "db"
     build: ./
     volumes:
       - ./:/var/www/app
@@ -10,3 +14,25 @@ services:
     command:
       sh -c 'npm i && npm run serve'
     restart: always
+    networks:
+      - cyber2k20
+  db:
+    environment:
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_DATABASE: 'cyber2k20'
+      MYSQL_USER: cyber2k20
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    image: mariadb
+    restart: always
+    volumes:
+      - ./init-db.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./db-data/:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - cyber2k20
+
+networks:
+  cyber2k20: 
+    driver: bridge

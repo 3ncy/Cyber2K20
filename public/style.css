@@ -293,6 +293,18 @@ html {
     width: 100%;
 }
 
+.join-section-form-items-container-button {
+    display: flex;
+}
+
+.join-section-form-sent {
+    padding: 4px 0px;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 17px;
+    color: greenyellow;
+    visibility: hidden;
+}
+
 .join-section-form-name, .join-section-form-email, .join-section-form-message {
     width: 100%;
     padding: 2px 0 2px 0;
@@ -344,6 +356,10 @@ html {
 
 .join-section-form-items-container.sbutton input {
     background-color: greenyellow;
+}
+
+.join-section-form-items-container.sbutton p {
+    visibility: visible;
 }
 
 .join-section-form-items-container.ebutton input {

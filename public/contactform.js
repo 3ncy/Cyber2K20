@@ -7,7 +7,22 @@ const button = document.getElementById("submitbutton");
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    validations();
+    if(validations()) {
+        const emailValue = email.value.trim();
+        const usernameValue = username.value.trim();
+        const messageValue = message.value.trim();
+
+        fetch('/api/form/post', { method: 'POST', headers: { 'Content-Type': 'application/json'}, 
+        body: JSON.stringify({ email: emailValue, username: usernameValue, message: messageValue})});
+
+        //fetch('/api/form/response', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({response: false})})
+        //.then(response => {
+        //    return { response: response,  body: response.json()};
+        //})
+        //.then(({ response, body }) => {
+        //    console.log(body.success);
+        //});
+    };
 });
 
 function validations() {
@@ -44,9 +59,11 @@ function validations() {
 
     if(usernameBool && emailBool && messageBool) {
         validateButton(button);
+        return true;
         
     } else {
         nothingButton(button);
+        return false;
     }
 }
 
