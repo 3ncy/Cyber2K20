@@ -305,6 +305,11 @@ html {
     visibility: hidden;
 }
 
+.join-section-form-items-container .sbutton_text {
+    color: rgb(255, 73, 73);
+    visibility: visible;
+}
+
 .join-section-form-name, .join-section-form-email, .join-section-form-message {
     width: 100%;
     padding: 2px 0 2px 0;

@@ -3,6 +3,7 @@ const email = document.getElementById("email");
 const message = document.getElementById("message");
 const form = document.getElementById("form");
 const button = document.getElementById("submitbutton");
+const button_text = document.getElementById("button_text");
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -13,15 +14,22 @@ form.addEventListener("submit", (e) => {
         const messageValue = message.value.trim();
 
         fetch('/api/form/post', { method: 'POST', headers: { 'Content-Type': 'application/json'}, 
-        body: JSON.stringify({ email: emailValue, username: usernameValue, message: messageValue})});
+        body: JSON.stringify({ email: emailValue, username: usernameValue, message: messageValue})})
 
-        //fetch('/api/form/response', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({response: false})})
-        //.then(response => {
-        //    return { response: response,  body: response.json()};
-        //})
-        //.then(({ response, body }) => {
-        //    console.log(body.success);
-        //});
+        .then(response => {
+            return response.json();
+        })
+        
+        .then((body) => {
+            if(body.success) {
+                validateButton(button);
+                setTimeout(() => {
+                    resetForm();
+                }, 15000);
+            } else {
+                nothingButton(button, 'There was an error while sending your request');
+            }
+        });
     };
 });
 
@@ -29,7 +37,6 @@ function validations() {
     const emailValue = email.value.trim();
     const usernameValue = username.value.trim();
     const messageValue = message.value.trim();
-    const buttonValue = button.value.trim();
     var usernameBool = false;
     var emailBool = false;
     var messageBool = false;
@@ -92,16 +99,44 @@ function validateEmail(email) {
     return re.test(email);
 }
 
-function nothingButton(input) {
+function nothingButton(input, message = 'Invalid input') {
     const formControl = input.parentElement;
+    button_text.innerHTML = message;
+
+    button_text.classList.remove('ebutton_text');
+    button_text.classList.add('sbutton_text');
 
     formControl.classList.remove('sbutton');
     formControl.classList.add('ebutton');
 }
 
-function validateButton(input) {
+function validateButton(input, message = "Successfully sent") {
     const formControl = input.parentElement;
+
+    button_text.innerHTML = message;
+
+    button_text.classList.remove('sbutton_text');
+    button_text.classList.add('ebutton_text');
 
     formControl.classList.remove('ebutton');
     formControl.classList.add('sbutton');
 }
+
+function resetForm() {
+    const usernameParent = username.parentElement;
+    const emailParent = email.parentElement;
+    const messageParent = message.parentElement;
+    const buttonParent = button.parentElement;
+    const buttonTextParent = button_text.parentElement;
+
+    usernameParent.classList.remove('success');
+    emailParent.classList.remove('success');
+    messageParent.classList.remove('success');
+    buttonParent.classList.remove('sbutton');
+    buttonTextParent.classList.remove('sbutton_text');
+
+    username.value = '';
+    email.value = '';
+    message.value = '';
+    button_text.value = '';
+};
