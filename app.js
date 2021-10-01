@@ -9,6 +9,18 @@ const connection = mysql.createConnection(config.db);
 
 app.use(express.json());
 app.use(cors({origin:'*'}));
+connection.query("SET time_zone = 'Europe/Prague';", (err) => {
+    if(err) throw err
+});
+
+const apiLimit = rateLimit({
+    windowMs: 10 * 60 * 1000,
+    max: 10
+});
+
+app.use(express.json());
+app.use(cors({origin:'*'}));
+app.use("/api/", apiLimit);
 
 app.post('/api/form/post', (req, res) => {
 
