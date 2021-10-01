@@ -29,9 +29,9 @@ jobs:
       - name: Create ssh key
         env:
           SSH_KEY: ${{ secrets.SSH_KEY }}
-        run: echo "$SSH_KEY" > ../id_rsa
+        run: echo "$SSH_KEY" > ./id_rsa
         
       - name: Copy code using scp
         env:
           SSH_IP: ${{ secrets.SSH_IP }}
-        run: scp -i ../id_rsa . "cyber2k20@$SSH_IP:/var/www/cyber2k20"
+        run: scp -i ./id_rsa . "cyber2k20@$SSH_IP:/var/www/cyber2k20"
