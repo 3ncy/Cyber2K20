@@ -27,7 +27,7 @@ jobs:
         run: sudo apt-get install openssh-client
       
       - name: Create ssh key
-        run: echo $SSH_KEY > ~/.ssh/id_rsa
+        run: mkdir -p ~/.ssh echo $SSH_KEY > ~/.ssh/id_rsa
         
       - name: Copy code using scp
         run: scp -i . cyber2k20@$SSH_IP:/var/www/cyber2k20
