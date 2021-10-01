@@ -22,9 +22,6 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
-      
-      - name: Install openssh
-        run: sudo apt-get install openssh-client
         
       - name: Copy code using scp
         uses: easingthemes/ssh-deploy@main
@@ -32,5 +29,5 @@ jobs:
           REMOTE_HOST: ${{ secrets.SSH_IP }}
           REMOTE_USER: "cyber2k20"
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
-          TARGET: "/var/www/test"
+          TARGET: "/var/www/cyber2k20"
           SOURCE: "./"
