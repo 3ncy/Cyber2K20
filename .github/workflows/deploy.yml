@@ -30,5 +30,6 @@ jobs:
           REMOTE_HOST: ${{ secrets.SSH_IP }}
           REMOTE_USER: "cyber2k20"
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+        with:
           TARGET: "/var/www/cyber2k20"
           SOURCE: "./"
