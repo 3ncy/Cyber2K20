@@ -22,7 +22,7 @@ app.use("/api/", apiLimit);
 
 app.get('/', (req, res) => {
     console.log(req.headers);
-    res.sendFile("public/index.html");
+    res.sendFile("/public/index.html");
 });
 
 app.post('/api/form/post', (req, res) => {
