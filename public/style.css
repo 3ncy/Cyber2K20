@@ -560,8 +560,16 @@ html {
     border-color: #d87e29;
 }
 
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .cookie-button {
     padding: 7px 12px;
+    margin: 8px 10px;
     font-size: 15px;
     border: none;
     cursor: pointer;
@@ -579,6 +587,12 @@ html {
 
 .hidden-cookie {
     opacity: 0;
+}
+
+@media(max-width:1500px) {
+    #consent-cookie {
+        flex-direction: column;
+    }
 }
 
 @media(max-width:1100px) {
