@@ -6,6 +6,9 @@ const config = require('./config.json');
 const app = express();
 
 const connection = mysql.createConnection(config.db);
+connection.query("SET time_zone = 'Europe/Prague';", (err) => {
+    if(err) throw err
+});
 
 app.use(express.json());
 app.use(cors({origin:'*'}));

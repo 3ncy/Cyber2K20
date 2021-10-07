@@ -476,7 +476,7 @@ html {
 .footer-container {
     display: flex;
     flex-direction: column;
-    padding: 50px 150px;
+    padding: 50px 50px;
 }
 
 .footer-logos-container {
@@ -516,6 +516,69 @@ html {
 
 .footer-logo {
     height: 3vh;
+}
+
+#consent-cookie {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 30%;
+    background-color: #272727;
+    color: #ffffff;
+    font-family: 'Rajdhani', sans-serif;
+    opacity: 1;
+    transition: opacity .8s ease;
+}
+
+.cookie-text {
+    font-size: 18px;
+}
+
+.terms {
+    text-decoration: none;
+    color: #ffffff;
+    transition: 0.3s ease;
+    border: solid 2px #ffffff;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
+
+.terms:hover {
+    color: #df9551;
+    border-color: #df9551;
+    transition: 0.3s ease;
+}
+
+.terms:active {
+    color: #d87e29;
+    border-color: #d87e29;
+}
+
+.cookie-button {
+    padding: 7px 12px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cookie-button:hover {
+    background-color: #bbbbbb;
+    transition: 0.3s ease;
+}
+
+.cookie-button:active {
+    background-color: #999999;
+}
+
+.hidden-cookie {
+    opacity: 0;
 }
 
 @media(max-width:1100px) {
@@ -578,7 +641,7 @@ html {
     }
 
     .contact-section {
-        padding: 0px 50px 50px 50px;
+        padding: 50px;
     }
 
     .contact-section-container {
