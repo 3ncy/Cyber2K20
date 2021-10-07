@@ -10,7 +10,7 @@ const connection = mysql.createConnection(config.db);
 
 const apiLimit = rateLimit({
     windowMs: 10 * 60 * 1000,
-    max: 3
+    max: 7
 });
 
 app.use(express.json());
