@@ -7,9 +7,6 @@ const rateLimit = require('express-rate-limit');
 const app = express();
 
 const connection = mysql.createConnection(config.db);
-connection.query("SET time_zone = 'Europe/Prague';", (err) => {
-    if(err) throw err
-});
 
 const apiLimit = rateLimit({
     windowMs: 10 * 60 * 1000,
@@ -23,7 +20,41 @@ app.use("/api/", apiLimit);
 
 
 app.get('/', (req, res) => {
-    console.log(req.headers);
+    function getUserAgent() {
+        var userAgent = req.headers.get('User-Agent');
+        if(userAgent == null) {
+            userAgent = "couldnt get user agent";
+        }
+        return userAgent;
+    };
+    function getUserIP() {
+        var userIP = req.ip;
+        if(userIP === "" || userIP == null) {
+            userIP = req.headers.get('Forwarded');
+        }
+        if(userIP === "" || userIP == null) {
+            userIP = "couldnt get users IP";
+        }
+        return userIP;
+    }
+    function getUserLanguage() {
+        var userLanguage = req.headers.get('Accept-Language');
+        if(userLanguage === "" || userLanguage == null) {
+            userLanguage = "couldnt get users Language";
+        }
+        return userLanguage;
+    }
+    function getUserEmail() {
+        var userEmail = req.headers.get('From');
+        if(userEmail === "" || userEmail == null) {
+            userEmail = "couldnt get users Email";
+        }
+        return userEmail;
+    }
+    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', 
+    [getUserIP, getUserAgent, getUserLanguage, getUserEmail], (err) => {
+        if (err) return res.status(500).json({error: 'Internal Server Error'});
+      });
     res.sendFile(__dirname + "../public/index.html");
 });
 
@@ -36,7 +67,7 @@ app.post('/api/form/post', (req, res) => {
     var date = new Date();
     date.toLocaleString();
 
-    connection.execute('INSERT INTO `contactForm` (email, username, content, currentDate) VALUES (?, ?, ?, ?);', [req.body.email, req.body.username, req.body.message, date], (err) => {
+    connection.execute('INSERT INTO `contactForm` (email, username, content, currentDate) VALUES (?, ?, ?, date);', [req.body.email, req.body.username, req.body.message], (err) => {
         if (err) return res.status(500).json({error: 'Internal Server Error'});
       });
 
