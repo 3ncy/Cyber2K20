@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2');
 const config = require('./config.json');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 
@@ -10,8 +11,21 @@ connection.query("SET time_zone = 'Europe/Prague';", (err) => {
     if(err) throw err
 });
 
+const apiLimit = rateLimit({
+    windowMs: 10 * 60 * 1000,
+    max: 3
+});
+
 app.use(express.json());
 app.use(cors({origin:'*'}));
+app.use(express.static('public'));
+app.use("/api/", apiLimit);
+
+
+app.get('/', (req, res) => {
+    console.log(req.headers);
+    res.sendFile(__dirname + "../public/index.html");
+});
 
 app.post('/api/form/post', (req, res) => {
 

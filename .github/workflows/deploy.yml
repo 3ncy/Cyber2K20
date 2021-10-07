@@ -33,3 +33,10 @@ jobs:
         with:
           SOURCE: "./"
           TARGET: "/var/www/cyber2k20"
+      - name: Restart SQL database & app container
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: 'cd /var/www/cyber2k20 && docker-compose down && docker-compose up -d'
+          host: ${{ secrets.SSH_IP }}
+          username: cyber2k20
+          privatekey: ${{ secrets.SSH_KEY }}
