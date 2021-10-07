@@ -20,7 +20,7 @@ app.use("/api/", apiLimit);
 
 
 app.get('/', (req, res) => {
-    function getUserAgent() {
+    /* function getUserAgent() {
         var userAgent = req.headers.get('User-Agent');
         if(userAgent == null) {
             userAgent = "couldnt get user agent";
@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
     connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', 
     [getUserIP, getUserAgent, getUserLanguage, getUserEmail], (err) => {
         if (err) return res.status(500).json({error: 'Internal Server Error'});
-      });
+      }); */
     res.sendFile(__dirname + "../public/index.html");
 });
 
