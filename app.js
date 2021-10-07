@@ -18,11 +18,13 @@ const apiLimit = rateLimit({
 
 app.use(express.json());
 app.use(cors({origin:'*'}));
+app.use(express.static('public'));
 app.use("/api/", apiLimit);
+
 
 app.get('/', (req, res) => {
     console.log(req.headers);
-    res.sendFile("/public/index.html");
+    res.sendFile(__dirname + "../public/index.html");
 });
 
 app.post('/api/form/post', (req, res) => {
