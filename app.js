@@ -25,6 +25,7 @@ app.use("/api/", apiLimit);
 app.get('/', (req, res) => {
     console.log(req.headers);
     res.sendFile(__dirname + "../public/index.html");
+    return res.status(200).json({loading: true});
 });
 
 app.post('/api/form/post', (req, res) => {
