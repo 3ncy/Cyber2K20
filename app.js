@@ -64,10 +64,7 @@ app.post('/api/form/post', (req, res) => {
         return res.status(400).json({error: 'Invalid Body'});
     }
 
-    var date = new Date();
-    date.toLocaleString();
-
-    connection.execute('INSERT INTO `contactForm` (email, username, content, currentDate) VALUES (?, ?, ?, ?);', [req.body.email, req.body.username, req.body.message, date], (err) => {
+    connection.execute('INSERT INTO `contactForm` (email, username, content) VALUES (?, ?, ?);', [req.body.email, req.body.username, req.body.message], (err) => {
         if (err) return res.status(500).json({error: 'Internal Server Error'});
       });
 
