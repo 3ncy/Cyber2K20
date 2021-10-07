@@ -67,7 +67,7 @@ app.post('/api/form/post', (req, res) => {
     var date = new Date();
     date.toLocaleString();
 
-    connection.execute('INSERT INTO `contactForm` (email, username, content, currentDate) VALUES (?, ?, ?, date);', [req.body.email, req.body.username, req.body.message], (err) => {
+    connection.execute('INSERT INTO `contactForm` (email, username, content, currentDate) VALUES (?, ?, ?, ?);', [req.body.email, req.body.username, req.body.message, date], (err) => {
         if (err) return res.status(500).json({error: 'Internal Server Error'});
       });
 
