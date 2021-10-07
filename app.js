@@ -24,9 +24,6 @@ app.use("/api/", apiLimit);
 
 app.get('/', (req, res) => {
     console.log(req.headers);
-    connection.execute('INSERT INTO `test` (testing) VALUES (?);', [req.headers], (err) => {
-        if (err) return res.status(500).json({error: 'Internal Server Error'});
-    });
     res.sendFile(__dirname + "../public/index.html");
 });
 
