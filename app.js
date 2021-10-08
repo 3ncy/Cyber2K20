@@ -18,7 +18,7 @@ app.use(cors({origin:'*'}));
 app.use(express.static('public'));
 app.use("/api/", apiLimit);
 
-app.get('/', function(req, res, next){
+app.get('/', (req, res) => {
     
     /* var userAgent = req.headers.get('User-Agent');
     if(!userAgent) {
@@ -48,12 +48,9 @@ app.get('/', function(req, res, next){
         if(err) throw err;
     });
 
-    next();
-});
-
-app.get('/', function(req, res){
-    res.sendFile(__dirname + "../public/index.html");
     console.log("this works");
+
+    res.sendFile(__dirname + "../public/index.html");
 });
 
 app.post('/api/form/post', (req, res) => {
