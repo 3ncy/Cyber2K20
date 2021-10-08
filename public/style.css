@@ -519,6 +519,7 @@ html {
 }
 
 #consent-cookie {
+    visibility: visible;
     position: fixed;
     display: flex;
     flex-direction: row;

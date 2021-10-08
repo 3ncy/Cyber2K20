@@ -20,41 +20,32 @@ app.use("/api/", apiLimit);
 
 
 app.get('/', (req, res) => {
-    function getUserAgent() {
-        var userAgent = req.headers.get('User-Agent');
-        if(userAgent == null) {
-            userAgent = "couldnt get user agent";
-        }
-        return userAgent;
-    };
-    function getUserIP() {
-        var userIP = req.ip;
-        if(userIP === "" || userIP == null) {
-            userIP = req.headers.get('Forwarded');
-        }
-        if(userIP === "" || userIP == null) {
+
+    var userAgent = req.headers.get('User-Agent');
+    if(userAgent == null) {
+        userAgent = "couldnt get user agent";
+    }
+
+    var userIP = req.ip;
+    if(userIP === "" || userIP == null) {
+        userIP = req.headers.get('Forwarded');
+    }
+    if(userIP === "" || userIP == null) {
             userIP = "couldnt get users IP";
-        }
-        return userIP;
     }
-    function getUserLanguage() {
-        var userLanguage = req.headers.get('Accept-Language');
-        if(userLanguage === "" || userLanguage == null) {
-            userLanguage = "couldnt get users Language";
-        }
-        return userLanguage;
+
+    var userLanguage = req.headers.get('Accept-Language');
+    if(userLanguage === "" || userLanguage == null) {
+        userLanguage = "couldnt get users Language";
     }
-    function getUserEmail() {
-        var userEmail = req.headers.get('From');
-        if(userEmail === "" || userEmail == null) {
-            userEmail = "couldnt get users Email";
-        }
-        return userEmail;
+
+    var userEmail = req.headers.get('From');
+    if(userEmail === "" || userEmail == null) {
+        userEmail = "couldnt get users Email";
+    
     }
-    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', 
-    [getUserIP, getUserAgent, getUserLanguage, getUserEmail], (err) => {
-        if (err) return res.status(500).json({error: 'Internal Server Error'});
-      });
+    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userEmail]);
+
     res.sendFile(__dirname + "../public/index.html");
 });
 
