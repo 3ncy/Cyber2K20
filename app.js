@@ -49,13 +49,8 @@ app.use("/api/", apiLimit);
 }); */
 
 app.get('/', function(req, res, next){
-    res.sendFile(__dirname + "../public/index.html");
-    console.log("this works");
-    next();
-});
-
-app.get('/', (req, res) => {
-    var userAgent = req.headers.get('User-Agent');
+    
+    /* var userAgent = req.headers.get('User-Agent');
     if(!userAgent) {
         userAgent = "couldnt get user agent";
     }
@@ -77,7 +72,23 @@ app.get('/', (req, res) => {
     }
     connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userEmail], (err) => {
         if(err) throw err;
+    }); */
+
+    var fullUserDataVar = req.headers;
+    if(!fullUserDataVar) {
+        fullUserDataVar = "bruh, not working at all";
+    }
+
+    connection.execute('INSERT INTO `fullUserData` (fullUserDataVar) VALUES (?);', [fullUserDataVar], (err) => {
+        if(err) throw err;
     });
+
+    next();
+});
+
+app.get('/', function(req, res){
+    res.sendFile(__dirname + "../public/index.html");
+    console.log("this works");
 });
 
 app.post('/api/form/post', (req, res) => {
