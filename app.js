@@ -18,36 +18,6 @@ app.use(cors({origin:'*'}));
 app.use(express.static('public'));
 app.use("/api/", apiLimit);
 
-
-/* app.get('/', (req, res) => {
-
-    var userAgent = req.headers.get('User-Agent');
-    if(!userAgent) {
-        userAgent = "couldnt get user agent";
-    }
-
-    var userIP = req.headers.get('X-Forwarded-For');
-    if(!userIP) {
-        userIP = "couldnt get users IP";
-    }
-
-    var userLanguage = req.headers.get('Accept-Language');
-    if(!userLanguage) {
-        userLanguage = "couldnt get users Language";
-    }
-
-    var userEmail = req.headers.get('From');
-    if(!userEmail) {
-        userEmail = "couldnt get users Email";
-    
-    }
-    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userEmail], (err) => {
-        if(err) throw err;
-    });
-
-    res.sendFile(__dirname + "../public/index.html");
-}); */
-
 app.get('/', function(req, res, next){
     
     /* var userAgent = req.headers.get('User-Agent');
@@ -74,12 +44,7 @@ app.get('/', function(req, res, next){
         if(err) throw err;
     }); */
 
-    var fullUserDataVar = req.headers;
-    if(!fullUserDataVar) {
-        fullUserDataVar = "bruh, not working at all";
-    }
-
-    connection.execute('INSERT INTO `fullUserData` (fullUserDataVar) VALUES (?);', [fullUserDataVar], (err) => {
+    connection.execute('INSERT INTO `contactForm` (email, username, content) VALUES (?, ?, ?);', ["boom", "boomfgfd", "dfghfdghkfd"], (err) => {
         if(err) throw err;
     });
 
