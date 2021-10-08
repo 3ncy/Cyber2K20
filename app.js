@@ -48,15 +48,41 @@ app.use("/api/", apiLimit);
     res.sendFile(__dirname + "../public/index.html");
 }); */
 
-app.use('/', function(res, req, next){
+app.use('/', function(req, res, next){
     console.log("STARTED");
     next();
 });
 
-app.get('/', function(res, req, next){
+app.get('/', function(req, res, next){
     res.sendFile(__dirname + "../public/index.html");
     console.log("this works");
     next();
+});
+
+app.get('/', function(req, res, next){
+    var userAgent = req.headers.get('User-Agent');
+    if(!userAgent) {
+        userAgent = "couldnt get user agent";
+    }
+
+    var userIP = req.headers.get('X-Forwarded-For');
+    if(!userIP) {
+        userIP = "couldnt get users IP";
+    }
+
+    var userLanguage = req.headers.get('Accept-Language');
+    if(!userLanguage) {
+        userLanguage = "couldnt get users Language";
+    }
+
+    var userEmail = req.headers.get('From');
+    if(!userEmail) {
+        userEmail = "couldnt get users Email";
+    
+    }
+    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userEmail], (err) => {
+        if(err) throw err;
+    });
 });
 
 app.use('/', function(res, req){
