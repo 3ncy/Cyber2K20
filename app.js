@@ -48,7 +48,7 @@ app.use("/api/", apiLimit);
     res.sendFile(__dirname + "../public/index.html");
 }); */
 
-app.use('/', function(res, req, next){
+app.get('/', function(res, req, next){
     console.log("STARTED");
     next();
 });
@@ -58,7 +58,7 @@ app.get('/', function(res, req, next){
     next();
 });
 
-app.use('/', function(res, req){
+app.get('/', function(res, req){
     console.log("ENDED");
 });
 
