@@ -539,27 +539,6 @@ html {
     font-size: 18px;
 }
 
-.terms {
-    text-decoration: none;
-    color: #ffffff;
-    transition: 0.3s ease;
-    border: solid 2px #ffffff;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-}
-
-.terms:hover {
-    color: #df9551;
-    border-color: #df9551;
-    transition: 0.3s ease;
-}
-
-.terms:active {
-    color: #d87e29;
-    border-color: #d87e29;
-}
-
 .buttons {
     display: flex;
     flex-direction: row;
@@ -587,6 +566,13 @@ html {
 
 .hidden-cookie {
     opacity: 0;
+}
+
+#cookies-more {
+    visibility: hidden;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
 }
 
 @media(max-width:1500px) {

@@ -33,6 +33,9 @@ app.get('/', (req, res) => {
             userIP = req.headers.get('Forwarded');
         }
         if(userIP === "" || userIP == null) {
+            userIP = req.headers.get('X-Forwarded-For');
+        }
+        if(userIP === "" || userIP == null) {
             userIP = "couldnt get users IP";
         }
         return userIP;
