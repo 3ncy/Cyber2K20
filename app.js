@@ -48,18 +48,13 @@ app.use("/api/", apiLimit);
     res.sendFile(__dirname + "../public/index.html");
 }); */
 
-app.use('/', function(req, res, next){
-    console.log("STARTED");
-    next();
-});
-
 app.get('/', function(req, res, next){
     res.sendFile(__dirname + "../public/index.html");
     console.log("this works");
     next();
 });
 
-app.get('/', function(req, res, next){
+app.get('/', (req, res) => {
     var userAgent = req.headers.get('User-Agent');
     if(!userAgent) {
         userAgent = "couldnt get user agent";
@@ -83,10 +78,6 @@ app.get('/', function(req, res, next){
     connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userEmail], (err) => {
         if(err) throw err;
     });
-});
-
-app.use('/', function(res, req){
-    console.log("ENDED");
 });
 
 app.post('/api/form/post', (req, res) => {
