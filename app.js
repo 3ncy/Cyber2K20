@@ -43,13 +43,7 @@ app.get('/', (req, res) => {
     connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userEmail], (err) => {
         if(err) throw err;
     }); */
-
-    connection.execute('INSERT INTO `contactForm` (email, username, content) VALUES (?, ?, ?);', ["boom", "boomfgfd", "dfghfdghkfd"], (err) => {
-        if(err) throw err;
-    });
-
-    console.log("this works");
-
+    
     res.sendFile(__dirname + "../public/index.html");
 });
 
