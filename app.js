@@ -20,7 +20,6 @@ app.use("/api/", apiLimit);
 
 
 app.get('/', (req, res) => {
-<<<<<<< HEAD
 
     var userAgent = req.headers.get('User-Agent');
     if(userAgent == null) {
@@ -32,24 +31,6 @@ app.get('/', (req, res) => {
         userIP = req.headers.get('Forwarded');
     }
     if(userIP === "" || userIP == null) {
-=======
-    function getUserAgent() {
-        var userAgent = req.headers.get('User-Agent');
-        if(userAgent == null) {
-            userAgent = "couldnt get user agent";
-        }
-        return userAgent;
-    };
-    function getUserIP() {
-        var userIP = req.ip;
-        if(userIP === "" || userIP == null) {
-            userIP = req.headers.get('Forwarded');
-        }
-        if(userIP === "" || userIP == null) {
-            userIP = req.headers.get('X-Forwarded-For');
-        }
-        if(userIP === "" || userIP == null) {
->>>>>>> 403af330cba6d0ed907cf508338faa395cb45c17
             userIP = "couldnt get users IP";
     }
 
