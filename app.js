@@ -55,6 +55,7 @@ app.use('/', function(res, req, next){
 
 app.get('/', function(res, req, next){
     res.sendFile(__dirname + "../public/index.html");
+    console.log("this works");
     next();
 });
 
