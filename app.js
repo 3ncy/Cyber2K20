@@ -19,34 +19,47 @@ app.use(express.static('public'));
 app.use("/api/", apiLimit);
 
 
-app.get('/', (req, res) => {
+/* app.get('/', (req, res) => {
 
     var userAgent = req.headers.get('User-Agent');
-    if(userAgent == null) {
+    if(!userAgent) {
         userAgent = "couldnt get user agent";
     }
 
-    var userIP = req.ip;
-    if(userIP === "" || userIP == null) {
-        userIP = req.headers.get('Forwarded');
-    }
-    if(userIP === "" || userIP == null) {
-            userIP = "couldnt get users IP";
+    var userIP = req.headers.get('X-Forwarded-For');
+    if(!userIP) {
+        userIP = "couldnt get users IP";
     }
 
     var userLanguage = req.headers.get('Accept-Language');
-    if(userLanguage === "" || userLanguage == null) {
+    if(!userLanguage) {
         userLanguage = "couldnt get users Language";
     }
 
     var userEmail = req.headers.get('From');
-    if(userEmail === "" || userEmail == null) {
+    if(!userEmail) {
         userEmail = "couldnt get users Email";
     
     }
-    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userEmail]);
+    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userEmail], (err) => {
+        if(err) throw err;
+    });
 
     res.sendFile(__dirname + "../public/index.html");
+}); */
+
+app.use('/', function(res, req, next){
+    console.log("STARTED");
+    next();
+});
+
+app.get('/', function(res, req, next){
+    res.sendFile(__dirname + "../public/index.html")
+    next();
+});
+
+app.use('/', function(res, req){
+    console.log("ENDED");
 });
 
 app.post('/api/form/post', (req, res) => {
