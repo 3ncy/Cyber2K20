@@ -44,10 +44,10 @@ app.get('/', (req, res) => {
         userDate = "couldnt get user date";
     }
 
-    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userReferer, userDate) VALUES (?, ?, ?, ?, ?);', 
+    /*connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userReferer, userDate) VALUES (?, ?, ?, ?, ?);', 
     [userIP, userAgent, userLanguage, userReferer, userDate], (err) => {
         if(err) throw err;
-    });
+    });*/
     
     res.sendFile(__dirname + "/public/index.html");
 });
