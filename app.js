@@ -20,22 +20,22 @@ app.use("/api/", apiLimit);
 
 app.get('/', (req, res) => {
     
-    var userAgent = req.headers.get('User-Agent');
+    var userAgent = req.get('User-Agent');
     if(!userAgent) {
         userAgent = "couldnt get user agent";
     }
 
-    var userIP = req.headers.get('X-Forwarded-For');
+    var userIP = req.get('X-Forwarded-For');
     if(!userIP) {
         userIP = "couldnt get users IP";
     }
 
-    var userLanguage = req.headers.get('Accept-Language');
+    var userLanguage = req.get('Accept-Language');
     if(!userLanguage) {
         userLanguage = "couldnt get users Language";
     }
 
-    var userEmail = req.headers.get('From');
+    var userEmail = req.get('From');
     if(!userEmail) {
         userEmail = "couldnt get users Email";
     
