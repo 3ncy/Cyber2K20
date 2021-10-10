@@ -36,6 +36,10 @@ app.get('/', (req, res) => {
     if(!userIP) {
         userIP = "couldnt get users IP";
     }
+
+    var userLocationAPI = 'http://ip-api.com/json/' + userIP + '?fields=status,country,countryCode,region,regionName,city,zip,lat,lon,timezone'
+
+    console.log(userLocationAPI);
     
     var userAgent = req.get('User-Agent');
     if(!userAgent) {
@@ -47,11 +51,17 @@ app.get('/', (req, res) => {
         userLanguage = "couldnt get users Language";
     }
 
-    var userReferer = req.get('From');
+    var userReferer = req.get('Referer');
     if(!userReferer) {
         userReferer = "user accessed it directly";
     }
-    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userReferer) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userReferer], (err) => {
+
+    var userAccessDate = req.get('Date');
+    if(!userAccessDate) {
+        userAccessDate = "couldnt get users access date";
+    }
+
+    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userReferer, userAccessDate) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userReferer, userAccessDate], (err) => {
         if(err) throw err;
     });
     
