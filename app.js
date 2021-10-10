@@ -18,9 +18,8 @@ app.use(cors({origin:'*'}));
 app.use(express.static('public'));
 app.use("/api/", apiLimit);
 
-const router = express.Router();
-
-router.get('/get', function(req, res) {
+app.get('/', (req, res) => {
+    console.log(req.headers);
     res.sendFile(__dirname + "../public/index.html");
 });
 
