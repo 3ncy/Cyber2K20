@@ -27,6 +27,18 @@ app.get('/', (req, res) => {
     var userLocationAPI = 'http://ip-api.com/json/' + userIP + '?fields=status,country,countryCode,region,regionName,city,zip,lat,lon,timezone'
 
     console.log(userLocationAPI);
+
+    fetch(userLocationAPI, {mode: 'cors'})
+    .then(function(response) {
+        return response.text();
+    })
+    .then(function(text) {
+        var userLocation = text;
+        return userLocation;
+    });
+    if(!userLocation) {
+        userLocation = "couldnt get users location"
+    }
     
     var userAgent = req.get('User-Agent');
     if(!userAgent) {
@@ -43,7 +55,7 @@ app.get('/', (req, res) => {
         userEmail = "user accessed it directly";
     }
 
-    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userEmail], (err) => {
+    connection.execute('INSERT INTO `userData` (userIP, userLocation, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?, ?);', [userIP, userLocation, userAgent, userLanguage, userEmail], (err) => {
         if(err) throw err;
     });
     
