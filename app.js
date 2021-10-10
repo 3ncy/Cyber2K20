@@ -1,12 +1,8 @@
-import fetch from 'node-fetch';
-
 const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2');
 const config = require('./config.json');
 const rateLimit = require('express-rate-limit');
-const geoIP = require("simple-geoip");
-let getLocation = new geoIP();
 
 const app = express();
 
@@ -38,12 +34,18 @@ app.get('/', (req, res) => {
         userLanguage = "couldnt get users Language";
     }
 
-    var userEmail = req.get('Referer');
-    if(!userEmail) {
-        userEmail = "user accessed it directly";
+    var userReferer = req.get('Referer');
+    if(!userReferer) {
+        userReferer = "user accessed it directly";
     }
 
-    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?, ?);', [userIP, userAgent, userLanguage, userEmail], (err) => {
+    var userDate = req.get('Date');
+    if(!userDate) {
+        userDate = "couldnt get user date";
+    }
+
+    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userReferer, userDate) VALUES (?, ?, ?, ?, ?);', 
+    [userIP, userAgent, userLanguage, userReferer, userDate], (err) => {
         if(err) throw err;
     });
     
