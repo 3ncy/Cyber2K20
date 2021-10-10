@@ -38,17 +38,12 @@ app.get('/', (req, res) => {
         userLanguage = "couldnt get users Language";
     }
 
-    var userReferer = req.get('Referer');
-    if(!userReferer) {
-        userReferer = "user accessed it directly";
+    var userEmail = req.get('Referer');
+    if(!userEmail) {
+        userEmail = "user accessed it directly";
     }
 
-    var userAccessDate = req.get('Date');
-    if(!userAccessDate) {
-        userAccessDate = "couldnt get users access date";
-    }
-
-    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userReferer, userAccessDate) VALUES (?, ?, ?, ?, ?);', [userIP, userAgent, userLanguage, userReferer, userAccessDate], (err) => {
+    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userEmail], (err) => {
         if(err) throw err;
     });
     
