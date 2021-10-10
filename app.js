@@ -18,9 +18,17 @@ app.use(cors({origin:'*'}));
 app.use(express.static('public'));
 app.use("/api/", apiLimit);
 
-app.get('/', (req, res) => {
+const router = express.Router();
+
+router.get('/', function(req, res) {
+    console.log('works');
+    res.status(200).json({successful: true});
+    res.sendFile(__dirname + "../public/index.html");
+});
+
+/* app.get('/', (req, res) => {
     
-    /* var userAgent = req.headers.get('User-Agent');
+    var userAgent = req.headers.get('User-Agent');
     if(!userAgent) {
         userAgent = "couldnt get user agent";
     }
@@ -42,10 +50,10 @@ app.get('/', (req, res) => {
     }
     connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userEmail], (err) => {
         if(err) throw err;
-    }); */
+    });
     
     res.sendFile(__dirname + "../public/index.html");
-});
+}); */
 
 app.post('/api/form/post', (req, res) => {
 
