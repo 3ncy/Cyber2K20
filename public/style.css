@@ -518,6 +518,70 @@ html {
     height: 3vh;
 }
 
+#consent-cookie {
+    visibility: visible;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem 30%;
+    background-color: #272727;
+    color: #ffffff;
+    font-family: 'Rajdhani', sans-serif;
+    opacity: 1;
+    transition: opacity .8s ease;
+}
+
+.cookie-text {
+    font-size: 18px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.cookie-button {
+    padding: 7px 12px;
+    margin: 8px 10px;
+    font-size: 15px;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cookie-button:hover {
+    background-color: #bbbbbb;
+    transition: 0.3s ease;
+}
+
+.cookie-button:active {
+    background-color: #999999;
+}
+
+.hidden-cookie {
+    opacity: 0;
+}
+
+#cookies-more {
+    visibility: hidden;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+@media(max-width:1500px) {
+    #consent-cookie {
+        flex-direction: column;
+    }
+}
+
 @media(max-width:1100px) {
     .join-section-form {
         width: 50%;

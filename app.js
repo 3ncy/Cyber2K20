@@ -2,10 +2,16 @@ const express = require('express');
 const cors = require('cors');
 const mysql = require('mysql2');
 const config = require('./config.json');
+const rateLimit = require('express-rate-limit');
 
 const app = express();
 
 const connection = mysql.createConnection(config.db);
+
+const apiLimit = rateLimit({
+    windowMs: 10 * 60 * 1000,
+    max: 7
+});
 
 app.use(express.json());
 app.use(cors({origin:'*'}));
@@ -21,6 +27,38 @@ const apiLimit = rateLimit({
 app.use(express.json());
 app.use(cors({origin:'*'}));
 app.use("/api/", apiLimit);
+
+app.use("/api/", apiLimit);
+
+app.get('/', (req, res) => {
+
+    var userIP = req.get('X-Forwarded-For');
+    if(!userIP) {
+        userIP = "couldnt get users IP";
+    }
+    
+    var userAgent = req.get('User-Agent');
+    if(!userAgent) {
+        userAgent = "couldnt get user agent";
+    }
+
+    var userLanguage = req.get('Accept-Language');
+    if(!userLanguage) {
+        userLanguage = "couldnt get users Language";
+    }
+
+    var userReferer = req.get('From');
+    if(!userReferer) {
+        userReferer = "user accessed it directly";
+    }
+    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userReferer) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userReferer], (err) => {
+        if(err) throw err;
+    });
+    
+    res.sendFile(__dirname + "/public/index.html");
+});
+
+app.use(express.static('public'));
 
 app.post('/api/form/post', (req, res) => {
 
