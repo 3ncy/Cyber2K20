@@ -19,15 +19,15 @@ app.use(cors({origin:'*'}));
 app.use("/api/", apiLimit);
 
 app.get('/', (req, res) => {
-    
-    var userAgent = req.get('User-Agent');
-    if(!userAgent) {
-        userAgent = "couldnt get user agent";
-    }
 
     var userIP = req.get('X-Forwarded-For');
     if(!userIP) {
         userIP = "couldnt get users IP";
+    }
+    
+    var userAgent = req.get('User-Agent');
+    if(!userAgent) {
+        userAgent = "couldnt get user agent";
     }
 
     var userLanguage = req.get('Accept-Language');
@@ -35,12 +35,11 @@ app.get('/', (req, res) => {
         userLanguage = "couldnt get users Language";
     }
 
-    var userEmail = req.get('From');
-    if(!userEmail) {
-        userEmail = "couldnt get users Email";
-    
+    var userReferer = req.get('From');
+    if(!userReferer) {
+        userReferer = "user accessed it directly";
     }
-    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userEmail) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userEmail], (err) => {
+    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userReferer) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userReferer], (err) => {
         if(err) throw err;
     });
     
