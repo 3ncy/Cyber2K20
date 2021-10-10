@@ -21,10 +21,15 @@ app.use("/api/", apiLimit);
 const router = express.Router();
 
 router.get('/', function(req, res) {
-    console.log('works');
-    res.status(200).json({successful: true});
     res.sendFile(__dirname + "../public/index.html");
+    sendUserData(req.headers);
 });
+
+function sendUserData(userHeader) {
+    console.log('works');
+    console.log(userHeader);
+    return;
+};
 
 /* app.get('/', (req, res) => {
     
@@ -61,7 +66,10 @@ app.post('/api/form/post', (req, res) => {
         return res.status(400).json({error: 'Invalid Body'});
     }
 
-    connection.execute('INSERT INTO `contactForm` (email, username, content) VALUES (?, ?, ?);', [req.body.email, req.body.username, req.body.message], (err) => {
+    var d = new Date();
+    d.toLocaleString();
+
+    connection.execute('INSERT INTO `contactForm` (email, username, content, sendTime) VALUES (?, ?, ?, ?);', [req.body.email, req.body.username, req.body.message, d], (err) => {
         if (err) return res.status(500).json({error: 'Internal Server Error'});
       });
 
