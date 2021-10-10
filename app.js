@@ -15,19 +15,6 @@ const apiLimit = rateLimit({
 
 app.use(express.json());
 app.use(cors({origin:'*'}));
-connection.query("SET time_zone = 'Europe/Prague';", (err) => {
-    if(err) throw err
-});
-
-const apiLimit = rateLimit({
-    windowMs: 10 * 60 * 1000,
-    max: 10
-});
-
-app.use(express.json());
-app.use(cors({origin:'*'}));
-app.use("/api/", apiLimit);
-
 app.use("/api/", apiLimit);
 
 app.get('/', (req, res) => {
@@ -61,7 +48,7 @@ app.get('/', (req, res) => {
         userAccessDate = "couldnt get users access date";
     }
 
-    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userReferer, userAccessDate) VALUES (?, ?, ?, ?);', [userIP, userAgent, userLanguage, userReferer, userAccessDate], (err) => {
+    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userReferer, userAccessDate) VALUES (?, ?, ?, ?, ?);', [userIP, userAgent, userLanguage, userReferer, userAccessDate], (err) => {
         if(err) throw err;
     });
     
