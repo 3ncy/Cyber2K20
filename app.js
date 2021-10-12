@@ -39,10 +39,10 @@ app.get('/', (req, res) => {
         userReferer = "user accessed it directly";
     }
 
-    var userDate = req.get('Date');
-    if(!userDate) {
-        userDate = "couldnt get user date";
-    }
+    var today = new Date;
+    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+    var time = (today.getHours()+2) + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var userDate = date+' '+time;
 
     connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userReferer, userDate) VALUES (?, ?, ?, ?, ?);', 
     [userIP, userAgent, userLanguage, userReferer, userDate], (err) => {

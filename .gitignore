@@ -3,3 +3,4 @@ package-lock.json
 config.json
 db-data/
 .env
+public/cookie.js
