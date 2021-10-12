@@ -477,6 +477,7 @@ html {
     display: flex;
     flex-direction: column;
     padding: 50px 50px;
+    margin: 0 0 80px 0;
 }
 
 .footer-logos-container {
@@ -518,7 +519,7 @@ html {
     height: 3vh;
 }
 
-#consent-cookie {
+.hidden-cookie {
     visibility: visible;
     position: fixed;
     display: flex;
@@ -528,7 +529,7 @@ html {
     bottom: 0;
     left: 0;
     right: 0;
-    padding: 2rem 30%;
+    padding: 2rem 32%;
     background-color: #272727;
     color: #ffffff;
     font-family: 'Rajdhani', sans-serif;
@@ -539,6 +540,7 @@ html {
 
 .cookie-text {
     font-size: 18px;
+    text-align: center;
 }
 
 .buttons {
@@ -566,19 +568,8 @@ html {
     background-color: #999999;
 }
 
-.hidden-cookie {
-    opacity: 0;
-}
-
-#cookies-more {
-    visibility: hidden;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-}
-
 @media(max-width:1500px) {
-    #consent-cookie {
+    .hidden-cookie {
         flex-direction: column;
     }
 }

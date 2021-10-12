@@ -1,13 +1,21 @@
-const cookie = document.getElementById("consent-cookie");
+const getUserLocation;
 
-cookie.addEventListener("submit", (e) => {
-    e.preventDefault
+if (navigator.geolocation) {
 
-    if(buttonAccept) {
-        
-    }
-});
+    getUserLocation = navigator.geolocation.getCurrentPosition();
 
-function buttonAccept() {
-
+} else {
+    getUserLocation = "couldnt get users location";
 }
+
+fetch('/userdata/location', { method: 'POST', headers: { 'Content-Type': 'application/json'}, 
+body: JSON.stringify({ userLocation: getUserLocation})});
+
+const cookieAccept = document.getElementById("cookie-accept");
+
+cookieAccept.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    document.getElementById("hide-cookie").style.visibility = "hidden";
+
+});

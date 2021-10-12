@@ -54,6 +54,18 @@ app.get('/', (req, res) => {
 
 app.use(express.static('public'));
 
+app.post('/userdata/location', (req, res) => {
+    var today = new Date;
+    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+    var time = (today.getHours()+2) + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var userDate = date+' '+time;
+
+    connection.execute('INSERT INTO `userLocationWithDate` (userLocation, userDate) VALUES (?, ?);', 
+    [req.body.userLocation, userDate], (err) => {
+        if(err) throw err;
+    });
+});
+
 app.post('/api/form/post', (req, res) => {
 
     if(!req.body.username || req.body.username === "" || !req.body.message || req.body.message === "" || !req.body.email || req.body.email === "" || !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(req.body.email)) {
