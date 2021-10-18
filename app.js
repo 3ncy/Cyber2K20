@@ -62,9 +62,9 @@ app.post('/api/form/post', (req, res) => {
 
     connection.execute('INSERT INTO `contactForm` (email, username, content) VALUES (?, ?, ?);', [req.body.email, req.body.username, req.body.message], (err) => {
         if (err) return res.status(500).json({error: 'Internal Server Error'});
-      });
+    });
 
-      return res.status(200).json({success: true});
+    return res.status(200).json({success: true});
 });
 
 app.listen(3000, () => console.log('App is running on http://127.0.0.1:3000/'));

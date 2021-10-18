@@ -13,8 +13,3 @@ CREATE TABLE IF NOT EXISTS userData (
     userReferer TEXT, 
     userDate TEXT
 );
-
-CREATE TABLE IF NOT EXISTS userLocationWithTime (
-    userLocation TEXT,
-    userDate TEXT
-);
