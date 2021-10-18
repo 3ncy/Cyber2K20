@@ -169,6 +169,66 @@ html {
     padding: 0px 0px 50px 0px;
 }
 
+.countdown-section {
+    background-color: white;
+}
+
+.countdown-section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 100px;
+}
+
+.countdown-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.countdown-text {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 35px;
+    font-weight: 800;
+}
+
+.countdown-timer-container {
+    display: flex;
+    padding: 10px 0 0 0;
+}
+
+.countdown-time-container {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 23px;
+}
+
+.countdown-time-spacer {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 23px;
+    padding: 13px 5px;
+    align-items: center;
+}
+
+.countdown-timer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.countdown-t {
+    display: flex;
+    padding: 5px 12px;
+    align-items: center;
+    justify-content: center;
+}
+
+.countdown-t-time {
+    display: flex;
+    padding: 5px 40px;
+    align-items: center;
+    justify-content: center;
+}
+
 .about-section {
     background-color: white;
 }
