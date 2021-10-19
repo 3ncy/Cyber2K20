@@ -18,6 +18,7 @@ services:
       - cyber2k20
   db:
     environment:
+      MYSQL_ROOT_HOST: '%'
       MYSQL_ROOT_PASSWORD: ''
       MYSQL_DATABASE: 'cyber2k20'
       MYSQL_USER: cyber2k20
