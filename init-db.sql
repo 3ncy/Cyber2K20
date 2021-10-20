@@ -13,3 +13,8 @@ CREATE TABLE IF NOT EXISTS userData (
     userReferer TEXT, 
     userDate TEXT
 );
+
+CREATE TABLE IF NOT EXISTS cookieTime (
+    userIPcookie TEXT,
+    timeClicked TEXT
+);

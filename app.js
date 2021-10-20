@@ -19,9 +19,12 @@ app.use("/api/", apiLimit);
 
 app.get('/', (req, res) => {
 
+    var send = true;
+
     var userIP = req.get('X-Forwarded-For');
     if(!userIP) {
         userIP = "couldnt get users IP";
+        send = false;
     }
 
     var userAgent = req.get('User-Agent');
@@ -44,10 +47,12 @@ app.get('/', (req, res) => {
     var time = (today.getHours()+2) + ":" + today.getMinutes() + ":" + today.getSeconds();
     var userDate = date+' '+time;
 
-    connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userReferer, userDate) VALUES (?, ?, ?, ?, ?);', 
-    [userIP, userAgent, userLanguage, userReferer, userDate], (err) => {
-        if(err) throw err;
-    });
+    if(send) {
+        connection.execute('INSERT INTO `userData` (userIP, userAgent, userLanguage, userReferer, userDate) VALUES (?, ?, ?, ?, ?);', 
+        [userIP, userAgent, userLanguage, userReferer, userDate], (err) => {
+            if(err) throw err;
+        });
+    }
     
     res.sendFile(__dirname + "/public/index.html");
 });
@@ -65,6 +70,23 @@ app.post('/api/form/post', (req, res) => {
     });
 
     return res.status(200).json({success: true});
+});
+
+app.post('/api/cookie', (req, res) => {
+
+    var sendCookie = true;
+
+    var userIPcookie = req.get('X-Forwarded-For');
+    if(!userIPcookie) {
+        userIPcookie = "couldnt get users IP";
+        sendCookie = false;
+    }
+
+    if(sendCookie) {
+        connection.execute('INSERT INTO `cookieTime` (userIPcookie, timeClicked) VALUES (?, ?);', [userIPcookie, req.body.timeClicked], (err) => {
+            if (err) return res.status(500).json({error: 'Internal Server Error'});
+        });
+    }
 });
 
 app.listen(3000, () => console.log('App is running on http://127.0.0.1:3000/'));
