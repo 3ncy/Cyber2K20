@@ -59,6 +59,12 @@ app.get('/', (req, res) => {
 
 app.use(express.static('public'));
 
+app.post('/api/getData', (req, res) => {
+
+    
+
+});
+
 app.post('/api/form/post', (req, res) => {
 
     if(!req.body.username || req.body.username === "" || !req.body.message || req.body.message === "" || !req.body.email || req.body.email === "" || !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(req.body.email)) {
