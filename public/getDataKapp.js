@@ -1,4 +1,5 @@
 var userResolution;
+var userProbabilityLocation;
 
 window.onload = function () {
     var loadTime = (window.performance.timing.domContentLoadedEventEnd- window.performance.timing.navigationStart) / 1000 + "s";
@@ -8,19 +9,21 @@ window.onload = function () {
     const realHeight = window.screen.height * window.devicePixelRatio;
     console.log(realWidth + "x" + realHeight);
 
-    window.navigator.geolocation.getCurrentPosition(console.log, console.log);
-
     function getLocation() {
         if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition);
+          userProbabilityLocation = navigator.geolocation.getCurrentPosition(showPosition);
         } else {
           console.log("Your browser does not suppost Geo Location");
+          userProbabilityLocation = "user does not have location enabled";
         }
-      }
+    }
       
-      function showPosition(position) {
-        console.log(position.coords.latitude + " " + position.coords.longitude);
-      }
+    function showPosition(position) {
+      console.log(position.coords.latitude + " " + position.coords.longitude);
+    }
 
-      showPosition(getLocation());
+    showPosition(getLocation());
+
+    fetch('/api/getData', { method: 'POST', headers: { 'Content-Type': 'application/json'}, 
+    body: JSON.stringify({ userLocation: userProbabilityLocation, userLoadTime: loadTime, userResolutionScreen: userResolution})});
 }
