@@ -61,12 +61,9 @@ app.use(express.static('public'));
 
 app.post('/api/getData', (req, res) => {
 
-    var send = true;
-
     var userIP = req.get('X-Forwarded-For');
     if(!userIP) {
         userIP = "couldnt get users IP";
-        send = false;
     }
 
     var userAgent = req.get('User-Agent');
@@ -89,12 +86,10 @@ app.post('/api/getData', (req, res) => {
     var time = (today.getHours()+2) + ":" + today.getMinutes() + ":" + today.getSeconds();
     var userDate = date+' '+time;
 
-    if(send) {
-        connection.execute('INSERT INTO `userDataWithMore` (userDate, userIP, userAgent, userLocation, userLanguage, userReferer, userResolution, userLoadTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?);', 
-        [userDate, userIP, userAgent, req.body.userLocation, userLanguage, userReferer, req.body.userResolutionScreen, req.body.userLoadTime], (err) => {
-            if(err) return res.status(500).json({error: 'Internal Server Error'});
-        });
-    }
+    connection.execute('INSERT INTO `userDataWithMore` (userDate, userIP, userAgent, userLocation, userLanguage, userReferer, userResolution, userLoadTime) VALUES (?, ?, ?, ?, ?, ?, ?, ?);', 
+    [userDate, userIP, userAgent, req.body.userLocation, userLanguage, userReferer, req.body.userResolutionScreen, req.body.userLoadTime], (err) => {
+        if(err) throw err;
+    });
 });
 
 app.post('/api/form/post', (req, res) => {
